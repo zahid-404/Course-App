@@ -56,7 +56,7 @@ const Header = () => {
           <div>
             {/* About Page Button */}
             <Button color="inherit" component={Link} to="/about">
-              About
+              Create Course
             </Button>
             {/* Courses Page Button */}
             <Button color="inherit" component={Link} to="/courses">

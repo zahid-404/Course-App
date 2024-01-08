@@ -1,4 +1,3 @@
-// Importing necessary components and hooks from React and Material-UI
 import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
@@ -11,14 +10,12 @@ import {
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useState } from "react";
 
-// Header component for the application
 const Header = () => {
-  // Retrieve authentication token and its updater function from local storage
+  // State to manage alert and token
   const [token, setToken] = useLocalStorage("token", "");
-  // State to manage the visibility of the logout success alert
   const [showLogoutAlert, setShowLogoutAlert] = useState(false);
-  // React Router's navigate function for programmatic navigation
   const navigate = useNavigate();
+
   // Check if the user is logged in based on the presence of the token
   const isLoggedIn = !!token;
 
@@ -33,11 +30,10 @@ const Header = () => {
     setTimeout(() => {
       setShowLogoutAlert(false);
       navigate("/");
-    }, 3000);
+    }, 1000);
   };
 
   return (
-    // Container for the header with a maximum width
     <Container maxWidth="lg">
       {/* App Bar for the header */}
       <AppBar position="static" className="bg-blue-500 rounded-md">
@@ -95,5 +91,4 @@ const Header = () => {
   );
 };
 
-// Exporting the Header component for use in other parts of the application
 export default Header;

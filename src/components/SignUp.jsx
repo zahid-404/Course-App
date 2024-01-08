@@ -55,11 +55,15 @@ const Signup = () => {
         error?.response?.data?.message ??
           "An error occurred during signup. Please try again."
       );
+      // hiding error alert
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     }
   };
 
   return (
-    // Main container 
+    // Main container
     <Container
       maxWidth="lg"
       className="flex items-center justify-center h-screen"

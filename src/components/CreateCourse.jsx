@@ -9,9 +9,9 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
-import useCreateCourse from "../hooks/useCreateCourse";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import axios from "axios";
 
 const CreateCourse = () => {
   // State to manage course details
@@ -23,10 +23,9 @@ const CreateCourse = () => {
     published: false,
   });
 
-  // Custom hook for creating a new course
-  const { createCourse, error } = useCreateCourse();
-  // State to manage the visibility of the success alert
+  // State to manage the visibility of the success/error alert
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [error, setError] = useState("");
 
   // Retrieve the token from local storage
   const [token] = useLocalStorage("token", "");
@@ -44,9 +43,9 @@ const CreateCourse = () => {
   // Function to handle course creation
   const handleCreateCourse = async () => {
     try {
-      // Call the createCourse function from the custom hook
-      await createCourse(courseDetails);
-
+      await axios.post("http://localhost:3000/admin/courses", courseDetails, {
+        headers: { Authorization: "Bearer " + token },
+      });
       // Show the success alert
       setShowSuccessAlert(true);
 
@@ -59,12 +58,20 @@ const CreateCourse = () => {
         published: false,
       });
 
-      // Hide the success alert after a certain duration (e.g., 3000 milliseconds)
+      // Hide the success alert after a certain duration (e.g., 1000 milliseconds)
       setTimeout(() => {
         setShowSuccessAlert(false);
-      }, 3000);
+      }, 1000);
     } catch (error) {
-      console.error("Failed to create course", error);
+      // Handling errors during course creation
+      setError(
+        error?.response?.data?.message ??
+          "An error occurred during creating course. Please try again."
+      );
+      // hiding error alert
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     }
   };
 
@@ -84,8 +91,12 @@ const CreateCourse = () => {
             </Alert>
           )}
 
-          {/* Check for any errors during course creation */}
-          {error && <Alert severity="error">{`Error: ${error.message}`}</Alert>}
+          {/* Conditionally render course creation error alert */}
+          {error && (
+            <Alert severity="error" color="error">
+              {error}
+            </Alert>
+          )}
 
           {/* Section for creating a new course */}
           <Typography
@@ -95,7 +106,7 @@ const CreateCourse = () => {
           >
             Create a New Course
           </Typography>
-          
+
           {/* Check if the user is logged in before rendering the form */}
           {isLoggedIn ? (
             <>
@@ -141,9 +152,7 @@ const CreateCourse = () => {
                 <Typography variant="body1">Published</Typography>
                 <Switch
                   color="primary"
-                  onChange={(e) =>
-                    handleChange("published", e.target.checked)
-                  }
+                  onChange={(e) => handleChange("published", e.target.checked)}
                 />
               </div>
               {/* Button for creating the course */}

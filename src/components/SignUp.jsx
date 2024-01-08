@@ -1,5 +1,5 @@
-// Importing necessary components and hooks from React and Material-UI
 import { useState } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
@@ -10,69 +10,78 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
-import useSignup from "../hooks/useSignup";
+import axios from "axios";
 
-// Signup component for user registration
 const Signup = () => {
-  // State to manage the user input for email and password
+  // State variables to manage user input, tokens, alerts, and errors
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // State to manage the visibility of the success alert
+  const [, setToken] = useLocalStorage("token", "");
   const [showSignupAlert, setShowSignupAlert] = useState(false);
-  // Hook to navigate to different pages
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Custom hook for handling the signup logic
-  const { signup, error } = useSignup();
-
-  // Handling errors during the signup process
-  if (error) {
-    return <p>Error : {error.message}</p>;
-  }
-
-  // Function to handle the signup button click
+  // Function to handle signup button click
   const handleSignup = async () => {
     // Creating an admin object with the user input
     const admin = { username, password };
 
     try {
-      // Calling the signup function from the custom hook
-      await signup(admin);
+      // Making a POST request to the signup endpoint
+      const response = await axios.post(
+        "http://localhost:3000/admin/signup",
+        admin
+      );
 
-      // Clear the text fields
+      // Extracting token from the response and storing it in local storage
+      const data = response.data;
+      setToken(data.token);
+
+      // Clearing the text fields
       setUsername("");
       setPassword("");
 
-      // Show the success alert
+      // Displaying the success alert
       setShowSignupAlert(true);
-      // Hide the success alert after a certain duration (e.g., 3000 milliseconds)
+
+      // Hiding the success alert after a certain duration and navigating to the home page
       setTimeout(() => {
         setShowSignupAlert(false);
-        // Navigate to the home page
         navigate("/");
-      }, 3000);
+      }, 1000);
     } catch (error) {
-      console.error("Failed to signup", error);
+      // Handling errors during signup
+      setError(
+        error?.response?.data?.message ??
+          "An error occurred during signup. Please try again."
+      );
     }
   };
 
   return (
-    // Container for the signup component with a maximum width
+    // Main container 
     <Container
       maxWidth="lg"
-      // Styling for the main container with flex layout, centering, and full height
       className="flex items-center justify-center h-screen"
     >
       {/* Card for displaying the signup form */}
       <Card elevation={10} className="w-96">
         {/* Card content with the signup form */}
         <CardContent className="text-center">
-          {/* Conditionally render signup alert */}
+          {/* Conditionally render signup success alert */}
           {showSignupAlert && (
             <Alert severity="success" color="info">
               Signup successful!
             </Alert>
           )}
+
+          {/* Conditionally render signup error alert */}
+          {error && (
+            <Alert severity="error" color="error">
+              {error}
+            </Alert>
+          )}
+
           {/* Heading */}
           <Typography
             variant="h4"
@@ -81,6 +90,7 @@ const Signup = () => {
           >
             Register to the Website
           </Typography>
+
           {/* Email input field */}
           <TextField
             label="Email"
@@ -90,6 +100,7 @@ const Signup = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+
           {/* Password input field */}
           <TextField
             label="Password"
@@ -100,6 +111,7 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+
           {/* Signup button */}
           <Button
             variant="contained"
@@ -109,6 +121,7 @@ const Signup = () => {
           >
             Sign Up
           </Button>
+
           {/* Login link */}
           <Typography className="mt-4 text-gray-600">
             Already a user?{" "}
@@ -122,5 +135,4 @@ const Signup = () => {
   );
 };
 
-// Exporting the Signup component for use in other parts of the application
 export default Signup;

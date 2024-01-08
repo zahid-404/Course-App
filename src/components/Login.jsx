@@ -1,5 +1,5 @@
-// Importing necessary components and hooks from React and Material-UI
 import { useState } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
@@ -10,57 +10,68 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
-import useLogin from "../hooks/useLogin";
+import axios from "axios";
 
-// Login component for user authentication
 const Login = () => {
-  // State to manage the user input for email and password
+  // State to manage the user input for email, password, alert, token
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // State to manage the visibility of the success alert
+  const [error, setError] = useState("");
   const [showLoginAlert, setShowLoginAlert] = useState(false);
-  // Hook to navigate to different pages
+  const [, setToken] = useLocalStorage("token", "");
   const navigate = useNavigate();
 
-  // Custom hook for handling the login logic
-  const { login, error } = useLogin();
-
-  // Handling errors during the login process
-  if (error) {
-    return <p>Error : {error.message}</p>;
-  }
-
-  // Function to handle the login button click
+  // Function to handle the login
   const handleLogin = async () => {
-    // Creating an admin object with the user input
-    const admin = { username, password };
+    const headers = {
+      "Content-Type": "application/json",
+      username: username,
+      password: password,
+    };
 
     try {
-      // Calling the login function from the custom hook
-      await login(admin);
+      // Making a POST request to the login endpoint
+      const response = await axios.post(
+        "http://localhost:3000/admin/login",
+        {},
+        {
+          headers: headers,
+        }
+      );
 
-      // Clear the text fields
+      // Extracting token from the response and storing it in local storage
+      const data = response.data;
+      setToken(data.token);
+
+      // Clearing the text fields
       setUsername("");
       setPassword("");
 
-      // Show the success alert
+      // Displaying the success alert
       setShowLoginAlert(true);
-      // Hide the success alert after a certain duration (e.g., 3000 milliseconds)
+
+      // Hiding the success alert after a certain duration and navigating to the home page
       setTimeout(() => {
         setShowLoginAlert(false);
-        // Navigate to the home page
         navigate("/");
-      }, 3000);
+      }, 1000);
     } catch (error) {
-      console.error("Failed to login", error);
+      // Handling errors during signup
+      setError(
+        error?.response?.data?.message ??
+          "An error occurred during login. Please try again."
+      );
+      // hiding error alert
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     }
   };
 
   return (
-    // Container for the login component with a maximum width
+    // Container for the login component
     <Container
       maxWidth="lg"
-      // Styling for the main container with flex layout, centering, and full height
       className="flex items-center justify-center h-screen"
     >
       {/* Card for displaying the login form */}
@@ -71,6 +82,12 @@ const Login = () => {
           {showLoginAlert && (
             <Alert severity="success" color="info">
               Login successful!
+            </Alert>
+          )}
+          {/* Conditionally render login error alert */}
+          {error && (
+            <Alert severity="error" color="error">
+              {error}
             </Alert>
           )}
           {/* Heading */}
@@ -122,5 +139,4 @@ const Login = () => {
   );
 };
 
-// Exporting the Login component for use in other parts of the application
 export default Login;

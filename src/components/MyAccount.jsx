@@ -1,21 +1,35 @@
-// Importing necessary components and hooks from React and Material-UI
 import { Container, Typography, Button } from "@mui/material";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
-// MyAccount component for displaying user account information
 const MyAccount = () => {
+  const [token] = useLocalStorage("token", "");
+  const [admin, setAdmin] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const response = await axios.get("http://localhost:3000/admin/me", {
+      headers: { Authorization: "Bearer " + token },
+    });
+    const data = response.data;
+    const admin = data.username;
+    setAdmin(admin);
+  };
+
   return (
-    // Container for the MyAccount component with a maximum width
     <Container
       maxWidth="lg"
-      // Styling for the main container with flex layout, centering, and background gradient
       className="flex items-center justify-center h-screen bg-gradient-to-b from--500 via-red-700 to-red-900 text-white"
     >
       {/* Main content of the MyAccount page */}
       <div className="text-center p-8 bg-white rounded-lg shadow-lg">
         {/* Heading */}
         <h1 className="text-4xl font-bold mb-4 text-gray-800">
-          Welcome to Your Account
+          {`Welcome ${admin} to Your Account`}
         </h1>
         {/* Description */}
         <Typography className="text-lg mb-8 text-gray-800">
@@ -36,5 +50,4 @@ const MyAccount = () => {
   );
 };
 
-// Exporting the MyAccount component for use in other parts of the application
 export default MyAccount;

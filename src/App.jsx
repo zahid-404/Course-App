@@ -1,6 +1,5 @@
-// Import React components and styling utilities
-import { Outlet } from "react-router-dom"; // Outlet provides a placeholder for nested route components
-import Header from "./components/Header"; // Header component for displaying the application header
+import { Outlet } from "react-router-dom";
+import Header from "./components/Header";
 
 // Functional component representing the main structure of the application
 const App = () => {
@@ -12,5 +11,4 @@ const App = () => {
   );
 };
 
-// Export the App component as the default export for use in other parts of the application
 export default App;

@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Typography, Container, Grid } from "@mui/material";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ShowCourses = () => {
   // State to manage the list of courses, token
   const [courses, setCourses] = useState([]);
   const [token] = useLocalStorage("token", "");
-  const navigate = useNavigate();
 
   // Function to fetch courses from the backend
   const fetchCourses = async () => {
@@ -50,13 +49,13 @@ const ShowCourses = () => {
 };
 
 export const CourseCard = ({ course }) => {
-  console.log(course);
+  const navigate = useNavigate();
   return (
     <Card
       style={{
         margin: 10,
         width: 300,
-        minHeight: 300, 
+        minHeight: 300,
         padding: 20,
       }}
     >
@@ -69,7 +68,7 @@ export const CourseCard = ({ course }) => {
       <img
         src={course.imageLink}
         alt={course.title} // Alt text for accessibility
-        style={{ width: "300px", height: "auto" }} 
+        style={{ width: "300px", height: "auto" }}
       />
       <Typography
         textAlign={"center"}

@@ -14,6 +14,7 @@ import CreateCourse from "./components/CreateCourse";
 import ShowCourses from "./components/ShowCourses";
 import Error from "./components/Error";
 import MyAccount from "./components/MyAccount";
+import EditCourse from "./components/EditCourse";
 
 // Define the application's routes using createBrowserRouter from react-router-dom.
 const appRouter = createBrowserRouter([
@@ -51,6 +52,11 @@ const appRouter = createBrowserRouter([
         // Courses page route
         path: "/courses",
         element: <ShowCourses />,
+      },
+      {
+        // Courses page route
+        path: "/courses/:courseId",
+        element: <EditCourse />,
       },
     ],
     errorElement: <Error />, // Error page component for displaying errors

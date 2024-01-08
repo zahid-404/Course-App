@@ -50,17 +50,15 @@ const Header = () => {
           </Typography>
           {/* Navigation buttons */}
           <div>
-            {/* About Page Button */}
-            <Button color="inherit" component={Link} to="/about">
-              Create Course
-            </Button>
-            {/* Courses Page Button */}
-            <Button color="inherit" component={Link} to="/courses">
-              Courses
-            </Button>
             {/* Conditionally render "My Account" and "Logout" based on user login status */}
             {isLoggedIn ? (
               <>
+                <Button color="inherit" component={Link} to="/about">
+                  Create Course
+                </Button>
+                <Button color="inherit" component={Link} to="/courses">
+                  Courses
+                </Button>
                 <Button color="inherit" component={Link} to="/me">
                   My Account
                 </Button>

@@ -3,7 +3,6 @@ import { Card, Button, Typography, Container, Grid } from "@mui/material";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import zIndex from "@mui/material/styles/zIndex";
 
 const ShowCourses = () => {
   // State to manage the list of courses, token

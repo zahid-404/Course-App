@@ -77,8 +77,8 @@ const ShowCourses = () => {
       {/* Grid to display the courses in a card layout */}
       <Grid container spacing={3}>
         {/* Mapping through the courses and displaying each in a grid item */}
-        {courses.map((course) => (
-          <Grid item key={course.id} xs={12} md={4}>
+        {courses.map((course, index) => (
+          <Grid item key={index} xs={12} md={4}>
             {/* Card for displaying course details */}
             <Card>
               {/* CardMedia for displaying the course image */}

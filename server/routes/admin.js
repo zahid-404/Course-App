@@ -3,6 +3,11 @@ const { Course, Admin } = require("../db");
 const jwt = require("jsonwebtoken");
 const { SECRET } = require("../middleware/auth");
 const { authenticateJwt } = require("../middleware/auth");
+const {
+  adminSignupSchema,
+  adminLoginSchema,
+  createCourseSchema,
+} = require("../validationSchemas");
 
 const router = express.Router();
 
@@ -18,7 +23,7 @@ router.get("/me", authenticateJwt, async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password } = adminSignupSchema.parse(req.body);
   const admin = await Admin.findOne({ username });
 
   if (admin) {
@@ -36,7 +41,7 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { username, password } = req.headers;
+  const { username, password } = adminLoginSchema.parse(req.headers);
   const admin = await Admin.findOne({ username, password });
   if (admin) {
     const token = jwt.sign({ username, role: "admin" }, SECRET, {
@@ -49,15 +54,21 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/courses", authenticateJwt, async (req, res) => {
-  const course = new Course(req.body);
+  const validatedData = createCourseSchema.parse(req.body);
+  const course = new Course(validatedData);
   await course.save();
   res.json({ message: "Course created successfully", courseId: course.id });
 });
 
 router.put("/courses/:courseId", authenticateJwt, async (req, res) => {
-  const course = await Course.findByIdAndUpdate(req.params.courseId, req.body, {
-    new: true,
-  });
+  const validatedData = createCourseSchema.parse(req.body);
+  const course = await Course.findByIdAndUpdate(
+    req.params.courseId,
+    validatedData,
+    {
+      new: true,
+    }
+  );
   if (course) {
     res.json({ message: "Course updated successfully" });
   } else {

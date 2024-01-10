@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const cors = require("cors");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/user");
 
+dotenv.config();
 const app = express();
 
 app.use(cors());
@@ -13,14 +15,11 @@ app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 app.get("/", (req, res) => res.json({ msg: "hello world from the server" }));
 
-mongoose.connect(
-  "mongodb+srv://zahid:zahid495@cluster0.t7uye72.mongodb.net/course-app",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: "course-app",
-  }
-);
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: "course-app",
+});
 
 const db = mongoose.connection;
 

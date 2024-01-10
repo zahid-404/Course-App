@@ -1,4 +1,4 @@
-# Full Stack Course App Selling Admin Dashboard
+# Full Stack Course App Selling Admin Dashboard 
 This document will guide you through the setup, features, and technologies used in our application.
 ```bash
 Note 🚨: I have already created the frontend and backend for this app. 
@@ -66,7 +66,9 @@ Seamless course management with the ability to create and edit courses.
 
 ## Screenshots
 
-Check out the preview in action [GIF](https://i.imgur.com/btTi1UQ.gif).
+[Live Website](https://course-app-zahid.vercel.app/)
+
+Check out the [GIF preview](https://i.imgur.com/btTi1UQ.gif).
 
 <img width="600" height="400" alt="color picker" src="https://i.imgur.com/JywMJDe.png" />
 

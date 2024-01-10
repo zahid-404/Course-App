@@ -11,9 +11,9 @@ import {
   courseImage,
 } from "../store/selectors/CourseSelector";
 import axios from "axios";
-import { BASE_URL } from "../config";
 
 function EditCourse() {
+  const BASE_URL = process.env.BASE_URL;
   let { courseId } = useParams();
   const setCourse = useSetRecoilState(courseState);
   const [token] = useLocalStorage("token", "");

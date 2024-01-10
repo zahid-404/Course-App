@@ -3,9 +3,9 @@ import { Card, Button, Typography, Container, Grid } from "@mui/material";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL } from "../config";
 
 const ShowCourses = () => {
+  const BASE_URL = process.env.BASE_URL;
   // State to manage the list of courses, token
   const [courses, setCourses] = useState([]);
   const [token] = useLocalStorage("token", "");

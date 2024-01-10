@@ -11,9 +11,9 @@ import {
   Alert,
 } from "@mui/material";
 import axios from "axios";
-import { BASE_URL } from "../config";
 
 const Login = () => {
+  const BASE_URL = process.env.BASE_URL;
   // State to manage the user input for email, password, alert, token
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

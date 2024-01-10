@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { BASE_URL } from "../config";
 
 const MyAccount = () => {
+  const BASE_URL = process.env.BASE_URL;
   const [token] = useLocalStorage("token", "");
   const [admin, setAdmin] = useState("");
 

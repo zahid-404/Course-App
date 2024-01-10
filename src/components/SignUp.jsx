@@ -11,9 +11,9 @@ import {
   Alert,
 } from "@mui/material";
 import axios from "axios";
-import { BASE_URL } from "../config";
 
 const Signup = () => {
+  const BASE_URL = process.env.BASE_URL;
   // State variables to manage user input, tokens, alerts, and errors
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

@@ -12,9 +12,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import axios from "axios";
-import { BASE_URL } from "../config";
 
 const CreateCourse = () => {
+  const BASE_URL = process.env.BASE_URL;
   // State to manage course details
   const [courseDetails, setCourseDetails] = useState({
     title: "",

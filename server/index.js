@@ -8,6 +8,8 @@ const userRouter = require("./routes/user");
 dotenv.config();
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(express.json());
 
@@ -28,4 +30,4 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

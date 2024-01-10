@@ -11,6 +11,7 @@ import {
   Alert,
 } from "@mui/material";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const Login = () => {
   // State to manage the user input for email, password, alert, token
@@ -32,7 +33,7 @@ const Login = () => {
     try {
       // Making a POST request to the login endpoint
       const response = await axios.post(
-        "http://localhost:3000/admin/login",
+        `${BASE_URL}/admin/login`,
         {},
         {
           headers: headers,

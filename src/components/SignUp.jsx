@@ -11,6 +11,7 @@ import {
   Alert,
 } from "@mui/material";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const Signup = () => {
   // State variables to manage user input, tokens, alerts, and errors
@@ -28,10 +29,7 @@ const Signup = () => {
 
     try {
       // Making a POST request to the signup endpoint
-      const response = await axios.post(
-        "http://localhost:3000/admin/signup",
-        admin
-      );
+      const response = await axios.post(`${BASE_URL}/admin/signup`, admin);
 
       // Extracting token from the response and storing it in local storage
       const data = response.data;

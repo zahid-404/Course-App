@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const CreateCourse = () => {
   // State to manage course details
@@ -43,7 +44,7 @@ const CreateCourse = () => {
   // Function to handle course creation
   const handleCreateCourse = async () => {
     try {
-      await axios.post("http://localhost:3000/admin/courses", courseDetails, {
+      await axios.post(`${BASE_URL}/admin/courses`, courseDetails, {
         headers: { Authorization: "Bearer " + token },
       });
       // Show the success alert

@@ -3,6 +3,7 @@ import { Card, Button, Typography, Container, Grid } from "@mui/material";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const ShowCourses = () => {
   // State to manage the list of courses, token
@@ -12,7 +13,7 @@ const ShowCourses = () => {
   // Function to fetch courses from the backend
   const fetchCourses = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/admin/courses", {
+      const res = await axios.get(`${BASE_URL}/admin/courses`, {
         headers: {
           "Content-type": "application/json",
           Authorization: "Bearer " + token,

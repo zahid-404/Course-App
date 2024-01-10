@@ -11,6 +11,7 @@ import {
   courseImage,
 } from "../store/selectors/CourseSelector";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 function EditCourse() {
   let { courseId } = useParams();
@@ -21,7 +22,7 @@ function EditCourse() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/admin/course/" + courseId,
+          `${BASE_URL}/admin/course/${courseId}`,
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -153,7 +154,7 @@ function UpdateCard() {
             variant="contained"
             onClick={async () => {
               await axios.put(
-                "http://localhost:3000/admin/courses/" + courseDetails._id,
+                `${BASE_URL}/admin/courses/${courseDetails._id}`,
                 {
                   title: title,
                   description: description,

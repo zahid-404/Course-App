@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { BASE_URL } from "../config";
 
 const MyAccount = () => {
   const [token] = useLocalStorage("token", "");
@@ -12,7 +13,7 @@ const MyAccount = () => {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:3000/admin/me", {
+    const response = await axios.get(`${BASE_URL}/admin/me`, {
       headers: { Authorization: "Bearer " + token },
     });
     const data = response.data;

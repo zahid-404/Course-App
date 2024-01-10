@@ -1,89 +1,74 @@
 # Full Stack Course App Selling Admin Dashboard
+This document will guide you through the setup, features, and technologies used in our application.
+```bash
+Note 🚨: I have already created the frontend and backend for this app. 
+Here are the links:
+```
+[Frontend](https://github.com/zahid-404/all-assignments/tree/main/week-4/02-medium-course-selling-app-admin-dashboard)
 
-Welcome to the README for your Full Stack Course App Selling Admin Dashboard! This document will guide you through the setup, features, and technologies used in your application.
+[Backend](https://github.com/zahid-404/all-assignments/tree/main/week-3/04-course-app-hard)
 
 ## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Technologies](#technologies)
-4. [Todo List](#todo-list)
-5. [Getting Started](#getting-started)
-6. [Installation](#installation)
-7. [Usage](#usage)
-8. [Contributing](#contributing)
-9. [License](#license)
-
-## Introduction
-
-This project is a Full Stack Course App Selling Admin Dashboard that combines the power of React for the frontend, Express for the backend, and MongoDB as the database. The frontend is styled using a combination of Material UI and Tailwind CSS. The goal is to create a seamless and user-friendly experience for managing courses in an admin capacity.
+1. [Features](#features)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Screenshots](#screenshots)
+6. [Contributing](#contributing)
+7. [Contact](#Contact)
 
 ## Features
 
-- **User Authentication:** Secure user authentication to ensure that only authorized users can access the admin dashboard.
-- **Course Management:** Create, update, and delete courses, including details such as title, description, price, and more.
-- **Dashboard Analytics:** Track and visualize key metrics and analytics related to course sales and user engagement.
-- **Responsive Design:** Ensure a consistent and enjoyable user experience across various devices.
+- **Frontend 🚀:** Developed using React, Material-UI (MUI), and Tailwind CSS for a modern and responsive UI.
+- **Backend ⚙️:** Built with Express, providing a robust and efficient server.
+- **Database 📊:** Utilizes MongoDB for reliable and scalable data storage.
+- **Authentication 🔐:** JWT (JSON Web Tokens) for secure user authentication.
+- **Admin Functionality 🛠️:** Admins can easily sign up and log in.
+Seamless course management with the ability to create and edit courses.
+- **Validation 🛡️:** Zod used for data validation, ensuring data integrity.
+- **State Management 🔄:** Recoil employed for efficient and centralized state management.
 
 ## Technologies
 
-- **Frontend:**
+| 💻 **Category** | 🚀 **Tech Used** |
+| - | - | 
+| Frontend Development |<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="javascript logo"  />  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  /> <img src="https://seeklogo.com/images/R/recoil-js-logo-0FA612F129-seeklogo.com.png" height="40" alt="recoil logo"  /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" alt="css3 logo"  /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" height="40" alt="MUI Logo"  /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" height="40" alt="tailwindcss logo"  /> <img src="https://api.iconify.design/logos/react-router.svg" height="40" alt="sass logo"  />   
+| Backend | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="40" /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg " height="40" />  <img src="https://seeklogo.com/images/J/json-web-tokens-jwt-io-logo-C003DEC47A-seeklogo.com.png" height="40" /><img src="https://seeklogo.com/images/Z/zod-logo-B57E684330-seeklogo.com.png" height="40" /> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLpT7L6xB0B62uelXFXNfjTD7keHPisEuzkTc-WgbwqA&s" height="40" />
+| Database | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg" height="40" alt="Mongo logo"  />  
+| Software & Others | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" height="40" alt="chrome logo"  />  <img src="https://skillicons.dev/icons?i=github" height="40" alt="github logo"  /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="40" alt="git logo"  />  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" height="40" alt="vscode logo"  /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" height="40" alt="vscode logo"  /> <img src="https://seeklogo.com/images/P/postman-api-platform-logo-D6B8AB9B0D-seeklogo.com.png" height="40" alt="postman logo"  />|
 
-  - React: A JavaScript library for building user interfaces.
-  - Material UI: A popular React UI framework for creating visually appealing components.
-  - Tailwind CSS: A utility-first CSS framework for quickly designing and styling.
-
-- **Backend:**
-
-  - Express: A fast, unopinionated, minimalist web framework for Node.js.
-  - MongoDB: A NoSQL database for storing and retrieving course data.
-
-- **Authentication:**
-
-  - Implement a secure authentication mechanism, such as JWT (JSON Web Tokens).
-
-  ## Todo List
-
-- [ ] **Code Restructuring:**
-- [ ] **Zod for Input Validation:**
-- [ ] **Real-time Communication with Socket.io:**
-- [ ] **State Management with Recoil:**
-- [ ] **Enhanced User Authentication:**
-- [ ] **Testing:**
-
-## Getting Started
-
-Make sure you have Node.js and MongoDB installed on your machine before proceeding.
 
 ## Installation
-
-1. Clone this repository: `https://github.com/zahid-404/Course-App.git`
-2. Navigate to the project directory: `cd Course App`
-3. Install dependencies for both the frontend and backend:
+1. Clone this repository: `https://github.com/zahid-404/Course-App`
+2. Navigate to the project directory: `cd Course-App`
+3. Install dependencies for frontend:
    ```bash
-   cd frontend
-   npm install
-   cd ../backend
    npm install
    ```
-
+2. Navigate to the Backend: `cd server`
+3. Install dependencies for frontend:
+   ```bash
+   npm install
+   ```
+   
 ## Usage
 
-1. Start the backend server:
+1. Start the frontend:
 
 ```bash
-  cd backend
-  npm start
-
+  npm run dev
 ```
-
-2. Start the frontend application:
+1. Start the Backend:
 
 ```bash
-  cd frontend
-  npm start
-
+  npm run dev
 ```
+
+## Screenshots
+
+Check out the preview in action [GIF](https://i.imgur.com/btTi1UQ.gif).
+
+<img width="600" height="400" alt="color picker" src="https://i.imgur.com/JywMJDe.png" />
 
 ## Contributing
 
@@ -95,6 +80,19 @@ Contributions are welcome! If you'd like to contribute to the project, feel free
 4. Push your changes to your fork: `git push origin feature/new-feature`.
 5. Submit a pull request to the main repository.
 
-## License
+
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the license terms.
+
+## Contact
+
+Feel free to reach out to us for any inquiries or feedback!
+
+![X](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white)
+[@z495m](https://twitter.com/z495m)
+
+![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)
+[mail me](mailto:zahidmohammad495@gmail.com)
+
+![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)
+[connect with me](https://www.linkedin.com/in/zahid-mohammad-117579121/)

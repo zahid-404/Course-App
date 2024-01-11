@@ -18,23 +18,20 @@ function EditCourse() {
   const setCourse = useSetRecoilState(courseState);
   const [token] = useLocalStorage("token", "");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${BASE_URL}/admin/course/${courseId}`,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        setCourse(response.data.course);
-      } catch (error) {
-        console.error("Error fetching course data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/admin/course/${courseId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setCourse(response.data.course);
+    } catch (error) {
+      console.error("Error fetching course data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 

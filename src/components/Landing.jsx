@@ -37,7 +37,8 @@ const Landing = () => {
           Welcome to the Course Uploader
         </h1>
         <p className="text-lg mb-8 text-gray-800">
-          Share your knowledge by uploading your courses.
+          Share your knowledge by uploading your courses. |
+          due to inactivity backend might be down. wait for the Modal
         </p>
         {isLoggedIn ? (
           <>

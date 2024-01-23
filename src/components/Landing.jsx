@@ -37,8 +37,8 @@ const Landing = () => {
           Welcome to the Course Uploader
         </h1>
         <p className="text-lg mb-8 text-gray-800">
-          Share your knowledge by uploading your courses. |
-          due to inactivity backend might be down. wait for the Modal
+          Share your knowledge by uploading your courses. | due to inactivity
+          backend might be down. wait for the Modal
         </p>
         {isLoggedIn ? (
           <>
@@ -58,7 +58,8 @@ const Landing = () => {
               <Button
                 variant="outlined"
                 color="primary"
-                onClick={handleCheckBackend}
+                component={Link}
+                to="/login"
               >
                 Login
               </Button>
